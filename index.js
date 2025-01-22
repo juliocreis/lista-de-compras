@@ -20,8 +20,30 @@ adicionarItem.addEventListener('click', (evento) => { // *
     const textoItem = document.createElement('p');
     textoItem.innerText = inputItem.value;
 
+    inputItemLista.addEventListener('click', function(){
+        if(inputItemLista.checked) {
+            textoItem.style.textDecoration = 'line-through';
+        } else {
+            textoItem.style.textDecoration = 'none';
+        }
+    });
+
+    const weekDate = new Date().toLocaleDateString('pt-BR', {weekday: 'long'});
+    const dataBrasileira = new Date().toLocaleDateString('pt-BR');
+    const hora = new Date().toLocaleTimeString('pt-BR', {
+        hour: 'numeric',
+        minute: 'numeric'
+    });
+
+    const dataCompleta = `${weekDate} (${dataBrasileira} às ${hora})`
+    const itemData = document.createElement('p');
+    itemData.innerText = dataCompleta;
+    itemData.classList.add('texto-data');
+
+
     containerItemLista.appendChild(inputItemLista);
     containerItemLista.appendChild(textoItem);
     itemLista.appendChild(containerItemLista);
+    itemLista.appendChild(itemData);
     listaDeCompras.appendChild(itemLista);
 })
